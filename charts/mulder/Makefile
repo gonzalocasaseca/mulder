@@ -4,12 +4,6 @@ NAME := mulder
 OS := $(shell uname)
 VERSION := $(shell cat ../../VERSION)
 
-test-unit:
-	$(GO) test -v .
-
-test-integration:
-	$(GO) test -v ./tests -addr ${MULDER_ADDR}
-
 build: clean
 	rm -rf requirements.lock
 	helm dependency build

@@ -2,6 +2,7 @@
 
 `mulder` is the backend side of [The Jenkins X Files](https://the-jenkins-x-files.github.io/) - the [Jenkins X](https://jenkins-x.io/) workshop. You can also see [Scully](https://github.com/the-jenkins-x-files/scully), the frontend side.
 
+
 It's a Go application that provides a (very) basic HTTP API, with 1 main endpoint:
 
 - `GET /quote/random` which returns a random quote from FBI's most unwanted, in JSON:

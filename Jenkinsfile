@@ -34,6 +34,7 @@ pipeline {
           dir('/home/jenkins/go/src/github.com/gonzalocasaseca/mulder/charts/preview') {
             sh "make preview"
             sh "jx preview --app $APP_NAME --namespace $PREVIEW_NAMESPACE --dir ../.."
+            h "wget --server-response --output-document=/dev/null --timeout=60 --tries=10 --retry-connrefused http://mulder.$PREVIEW_NAMESPACE/"
           }
 
           dir('/home/jenkins/go/src/github.com/XXX/mulder') {

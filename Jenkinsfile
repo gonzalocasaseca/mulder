@@ -27,17 +27,16 @@ pipeline {
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
           }
 
-          dir('/home/jenkins/go/src/github.com/XXX/mulder/charts/mulder') {
+          dir('/home/jenkins/go/src/github.com/gonzalocasaseca/mulder/charts/mulder') {
             sh "jx step helm build"
           }
 
           dir('/home/jenkins/go/src/github.com/gonzalocasaseca/mulder/charts/preview') {
             sh "make preview"
             sh "jx preview --app $APP_NAME --namespace $PREVIEW_NAMESPACE --dir ../.."
-            h "wget --server-response --output-document=/dev/null --timeout=60 --tries=10 --retry-connrefused http://mulder.$PREVIEW_NAMESPACE/"
           }
 
-          dir('/home/jenkins/go/src/github.com/XXX/mulder') {
+          dir('/home/jenkins/go/src/github.com/gonzalocasaseca/mulder') {
             sh "make test-integration MULDER_ADDR=mulder.$PREVIEW_NAMESPACE"
           }
 
